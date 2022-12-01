@@ -55,6 +55,9 @@ assert 1 == buildElves([[100,200,300]])[0].'ord'
 assert [100,200,300] == buildElves([[100,200,300]])[0].'data'
 assert 600 == buildElves([[100,200,300]])[0].'sum'
 
+// ----------------------------------
+// -- main 
+
 def dataLines = new File("data.txt").getText()
 def elfData = getElfData(dataLines)
 def elves = buildElves(elfData)
