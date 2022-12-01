@@ -1,16 +1,29 @@
 
+def processLine(dataLine) {
+    def result = new Expando()
+    def trimLine = dataLine.trim()
+    def isEmpty = trimLine.isEmpty()
+    result.'isEmpty' = isEmpty
+    result.'value' = isEmpty ? 0 : trimLine as int
+    result
+}
+
+assert true == processLine('\n').'isEmpty'
+assert 0 == processLine('\n').'value'
+assert false == processLine('5150\n').'isEmpty'
+assert 5150 == processLine('5150\n').'value'
+
 def getElfData(dataLines) { 
     def result = []
     if (dataLines && (! dataLines.isEmpty())) {
         def thisResult = []
         dataLines.eachLine { dataLine ->
-            def trimLine = dataLine.trim()
-            if (trimLine.isEmpty()) {
+            def dataInfo = processLine(dataLine)
+            if (dataInfo.'isEmpty') {
                 result << thisResult
                 thisResult = []
             } else {
-                def data = trimLine as int
-                thisResult << data
+                thisResult << dataInfo.'value'
             }
         }
         result << thisResult
