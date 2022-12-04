@@ -29,6 +29,18 @@ class PlayMap {
     }
 }
 
+enum Outcome {
+    LOSS(0),
+    DRAW(3),
+    WIN(6)
+
+    final int points
+
+    private Outcome(int points) {
+        this.points = points
+    }
+}
+
 def buildGame(guideLine) {
     def tokens = guideLine.trim().split(" ")
     def play1 = tokens[0]
@@ -83,36 +95,36 @@ assert false == new Referee().isWinningPlay(Play.SCISSORS, Play.PAPER)
 
 def computeOutcome(play1, play2) {
     // default is loss
-    def outcome = 0
+    def outcome = Outcome.LOSS
 
     if (play1.value == play2.value) {
-        // draw
-        outcome = 3
+        outcome = Outcome.DRAW 
     } else if (new Referee().isWinningPlay(play1, play2)) {
         // play2 beats play1
-        outcome = 6
+        outcome = Outcome.WIN
     }
 
     outcome
 }
 
-assert 0 == computeOutcome(Play.ROCK, Play.SCISSORS)
-assert 3 == computeOutcome(Play.ROCK, Play.ROCK)
-assert 6 == computeOutcome(Play.ROCK, Play.PAPER)
-assert 6 == computeOutcome(Play.PAPER, Play.SCISSORS)
-assert 0 == computeOutcome(Play.PAPER, Play.ROCK)
-assert 3 == computeOutcome(Play.PAPER, Play.PAPER)
-assert 3 == computeOutcome(Play.SCISSORS, Play.SCISSORS)
-assert 6 == computeOutcome(Play.SCISSORS, Play.ROCK)
-assert 0 == computeOutcome(Play.SCISSORS, Play.PAPER)
+assert 0 == computeOutcome(Play.ROCK, Play.SCISSORS).points
+assert 3 == computeOutcome(Play.ROCK, Play.ROCK).points
+assert 6 == computeOutcome(Play.ROCK, Play.PAPER).points
+assert 6 == computeOutcome(Play.PAPER, Play.SCISSORS).points
+assert 0 == computeOutcome(Play.PAPER, Play.ROCK).points
+assert 3 == computeOutcome(Play.PAPER, Play.PAPER).points
+assert 3 == computeOutcome(Play.SCISSORS, Play.SCISSORS).points
+assert 6 == computeOutcome(Play.SCISSORS, Play.ROCK).points
+assert 0 == computeOutcome(Play.SCISSORS, Play.PAPER).points
 
 def computeScores(games) {
     games.collect { game ->
         def play1 = game.'play1'
         def play2 = game.'play2'
-        // choice
+        // choice:
         def score = play2.value 
-        score += computeOutcome(play1, play2) 
+        // game:
+        score += computeOutcome(play1, play2).points 
         score
     }
 }
