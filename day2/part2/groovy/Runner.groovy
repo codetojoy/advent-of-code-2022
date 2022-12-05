@@ -72,11 +72,7 @@ assert Play.SCISSORS == buildGame('C Z').'play1'
 assert Goal.WIN == buildGame('C Z').'goal'
 
 def buildGames(guideLines) {
-    def games = []
-    guideLines.eachLine { line ->
-        games << buildGame(line)
-    }
-    games
+    guideLines.collect { buildGame(it) }
 }
 
 class Referee {
@@ -199,7 +195,7 @@ if (isTest) {
 
 // Note this is not efficient
 
-def guideLines = new File("guide.txt").getText()
+def guideLines = new File("guide.txt") as List
 def games = buildGames(guideLines)
 def scores = computeScores(games)
 def total = scores.sum()
