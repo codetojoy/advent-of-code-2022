@@ -44,9 +44,7 @@ assert 27 == computePriority('AbcdAxyz')
 assert 52 == computePriority('ZbcdZijk')
 
 def computePriorities(lines) {
-    def results = []
-    lines.eachLine { results << computePriority(it.trim()) }
-    results
+    lines.collect { computePriority(it.trim()) }
 }
 
 def isTest = false
@@ -59,7 +57,7 @@ if (isTest) {
 // ----------------------------------
 // -- main 
 
-def inputLines = new File("input.txt").getText()
+def inputLines = new File("input.txt") as List
 def priorities = computePriorities(inputLines)
 def total = priorities.sum()
 println "total: " + total
