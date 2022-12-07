@@ -41,15 +41,16 @@ class Stacks {
     }
 
     def applyMove(moveInfo) {
-        def n = moveInfo.n
         def src = getStack(moveInfo.from)
         def dest = getStack(moveInfo.to)
-        def crates = []
-        n.times { 
+        def crates = new ArrayDeque<String>() 
+
+        moveInfo.n.times { 
             def crate = src.removeFirst()
-            crates << crate
+            crates.addFirst(crate)
         }
-        crates.reverse().each { dest.addFirst(it) }
+
+        crates.each { dest.addFirst(it) }
     }
 
     def applyMoves(moves) {
