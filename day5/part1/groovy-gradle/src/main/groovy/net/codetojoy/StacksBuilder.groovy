@@ -1,7 +1,7 @@
 
 package net.codetojoy
 
-class Parser {
+class StacksBuilder {
     def isConfigLine(line) {
         def regex = /.*\[[A-Z]\].*/
         def matcher = (line =~ regex)
