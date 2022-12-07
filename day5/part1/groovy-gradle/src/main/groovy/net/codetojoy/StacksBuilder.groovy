@@ -2,9 +2,11 @@
 package net.codetojoy
 
 class StacksBuilder {
+    static def CONFIG_REGEX = /.*\[[A-Z]\].*/
+    static def CRATE_REGEX = /\[(.)\]/
+
     def isConfigLine(line) {
-        def regex = /.*\[[A-Z]\].*/
-        def matcher = (line =~ regex)
+        def matcher = (line =~ CONFIG_REGEX)
         matcher.matches()
     }
 
@@ -27,10 +29,10 @@ class StacksBuilder {
         def chunkIndex = 0
         def chunkSize = 4
         def isDone = false
-        def regex = /\[(.)\]/
+
         while (!isDone) {
             def s = getSubstring(chunkIndex, chunkSize, line)
-            def matcher = (s =~ regex)
+            def matcher = (s =~ CRATE_REGEX)
             if (matcher.matches()) {
                 def crate = matcher[0][1]
                 configInfo.put(chunkIndex + 1, crate)

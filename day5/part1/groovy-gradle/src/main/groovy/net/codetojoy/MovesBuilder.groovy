@@ -2,10 +2,11 @@
 package net.codetojoy
 
 class MovesBuilder {
+    static def MOVE_REGEX = /.*move (\d+) from (\d+) to (\d+).*/
+
     def buildMove(line) {
         def result = null
-        def regex = /.*move (\d+) from (\d+) to (\d+).*/
-        def matcher = (line =~ regex)
+        def matcher = (line =~ MOVE_REGEX)
 
         if (matcher.matches()) {
             result = new MoveInfo()
