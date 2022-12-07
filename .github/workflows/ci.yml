@@ -27,6 +27,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
     
+      - name: test template-gradle
+        run: ./gradlew test
+        working-directory: ./template/groovy-gradle
+
       - name: test d5-p1
         run: ./gradlew test
         working-directory: ./day5/part1/groovy-gradle
