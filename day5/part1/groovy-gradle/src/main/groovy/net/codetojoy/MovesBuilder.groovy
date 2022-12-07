@@ -2,7 +2,7 @@
 package net.codetojoy
 
 class MovesBuilder {
-    static def MOVE_REGEX = /.*move (\d+) from (\d+) to (\d+).*/
+    static final def MOVE_REGEX = /.*move (\d+) from (\d+) to (\d+).*/
 
     def buildMove(line) {
         def result = null

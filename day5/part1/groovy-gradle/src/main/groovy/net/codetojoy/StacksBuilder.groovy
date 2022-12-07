@@ -2,8 +2,8 @@
 package net.codetojoy
 
 class StacksBuilder {
-    static def CONFIG_REGEX = /.*\[[A-Z]\].*/
-    static def CRATE_REGEX = /\[(.)\]/
+    static final def CONFIG_REGEX = /.*\[[A-Z]\].*/
+    static final def CRATE_REGEX = /\[(.)\]/
 
     def isConfigLine(line) {
         def matcher = (line =~ CONFIG_REGEX)

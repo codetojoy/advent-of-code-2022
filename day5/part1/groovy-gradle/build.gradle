@@ -18,3 +18,10 @@ dependencies {
 run {
     args "${projectDir}/input.txt"
 }
+
+test {
+    testLogging {
+        events "passed", "failed"
+    }
+}
+
