@@ -31,11 +31,6 @@ jobs:
         run: ./gradlew test
         working-directory: ./template/groovy-gradle
 
-      - name: test template-groovy-script
-        run: ./test.sh
-        shell: bash
-        working-directory: ./template/groovy-script
-
       - name: test d5-p1
         run: ./gradlew test
         working-directory: ./day5/part1/groovy-gradle
@@ -51,8 +46,3 @@ jobs:
       - name: test d6-p2-gradle
         run: ./gradlew test
         working-directory: ./day6/part2/groovy-gradle
-
-      - name: test d6-p2-script
-        run: ./test.sh
-        shell: bash
-        working-directory: ./day6/part2/groovy-script
