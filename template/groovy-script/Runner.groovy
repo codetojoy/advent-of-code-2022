@@ -2,7 +2,7 @@
 def isTest = args && (args.findAll { it == '--test' }) 
 
 if (isTest) {
-    println "TRACER terminating: test run"
+    println "TRACER terminating: test run is OK"
     System.exit(0)
 }
 
