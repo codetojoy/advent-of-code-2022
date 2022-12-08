@@ -33,6 +33,7 @@ jobs:
 
       - name: test template-groovy-script
         run: ./test.sh
+        shell: bash
         working-directory: ./template/groovy-script
 
       - name: test d5-p1
