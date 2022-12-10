@@ -39,7 +39,16 @@ class Node {
         }
     }
 
-    def traverse() {
+    static def traverseForSize(node) {
+        def size = node.files*.size.sum()
+        node.subDirs.each { subDir ->
+            def resultForSubDir = traverseForSize(subDir)
+            size += resultForSubDir.size
+        }
+        def result = new Expando()
+        result.path = getPath(node)
+        result.size = size
+        result
     }
 
     def apply(def command) {

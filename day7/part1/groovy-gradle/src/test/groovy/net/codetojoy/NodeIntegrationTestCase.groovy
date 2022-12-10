@@ -94,7 +94,7 @@ class NodeIntegrationTestCase {
 
     @Test
     void testWalkDir_root_a_e_up_up_d() {
-        // ls /a/e
+        // ls /a/e/../../d
         root.apply(parser.parse('$ cd /'))
         root.apply(parser.parse('$ cd a'))
         root.apply(parser.parse('$ cd e'))
@@ -113,5 +113,43 @@ class NodeIntegrationTestCase {
         root.apply(parser.parse('5626152 d.ext'))
         root.apply(parser.parse('7214296 k'))
         */
+    }
+
+    @Test
+    void testTraverseForSize_root_d() {
+        // ls /d
+        root.apply(parser.parse('$ cd /'))
+        root.apply(parser.parse('$ cd a'))
+        root.apply(parser.parse('$ cd e'))
+        root.apply(parser.parse('$ cd ..'))
+        root.apply(parser.parse('$ cd ..'))
+        root.apply(parser.parse('$ cd d'))
+        cursor = root.apply(parser.parse('$ ls'))
+
+        // test
+        def result = Node.traverseForSize(cursor)
+
+        assertEquals '/d', result.path
+        assertEquals 24933642, result.size
+        /*
+        root.apply(parser.parse('4060174 j'))
+        root.apply(parser.parse('8033020 d.log'))
+        root.apply(parser.parse('5626152 d.ext'))
+        root.apply(parser.parse('7214296 k'))
+        */
+    }
+
+    @Test
+    void testTraverseForSize_root_a() {
+        // ls /a
+        root.apply(parser.parse('$ cd /'))
+        root.apply(parser.parse('$ cd a'))
+        cursor = root.apply(parser.parse('$ ls'))
+
+        // test
+        def result = Node.traverseForSize(cursor)
+
+        assertEquals '/a', result.path
+        assertEquals 94853, result.size
     }
 }
