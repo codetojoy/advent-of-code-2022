@@ -31,6 +31,17 @@ class Node {
         files.find { it.name == name }
     }
 
+    static def getPath(node) {
+        if (node.isRoot) {
+            return ""
+        } else {
+            return getPath(node.parent) + "/" + node.name
+        }
+    }
+
+    def traverse() {
+    }
+
     def apply(def command) {
         if (command.type == CommandType.DIR) {
             def node = new Node(parent: cursor, name: command.payload)

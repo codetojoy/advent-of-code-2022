@@ -77,4 +77,19 @@ class NodeTestCase {
 
         assertEquals true, Node.cursor.isRoot
     }
+
+    @Test
+    void testGetPath_basic() {
+        root.apply(parser.parse('dir foo'))
+        root.apply(parser.parse('$ cd foo'))
+        root.apply(parser.parse('dir bar'))
+        root.apply(parser.parse('$ cd bar'))
+        root.apply(parser.parse('dir baz'))
+        def cursor = root.apply(parser.parse('$ cd baz'))
+
+        // test
+        def result = Node.getPath(cursor)
+
+        assertEquals '/foo/bar/baz', result
+    }
 }
