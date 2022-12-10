@@ -11,8 +11,8 @@ class Node {
     def parent = null
     def name = ''
     def size = 0
-    def files = []
-    def subDirs = []
+    def files = new ArrayList<Node>()
+    def subDirs =  new ArrayList<Node>()
     def isRoot = false
 
     static def getRoot(def doClean = false) {
@@ -32,15 +32,15 @@ class Node {
     }
 
     def apply(def command) {
-        if (command.type == 'dir') {
+        if (command.type == CommandType.DIR) {
             def node = new Node(parent: cursor, name: command.payload)
             cursor.subDirs << node
-        } else if (command.type == 'file') {
+        } else if (command.type == CommandType.FILE) {
             def name = command.payload.name
             def size = command.payload.size
             def node = new Node(parent: cursor, name: name, size: size)
             cursor.files << node
-        } else if (command.type == 'cd') {
+        } else if (command.type == CommandType.CD) {
             def name = command.payload
             if (name == '..') {
                 cursor = cursor.parent

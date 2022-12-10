@@ -14,7 +14,7 @@ class ParserTestCase {
         // test
         def result = parser.parse(line)
 
-        assertEquals 'cd', result.type
+        assertEquals CommandType.CD, result.type
     }
 
     @Test
@@ -34,7 +34,7 @@ class ParserTestCase {
         // test
         def result = parser.parse(line)
 
-        assertEquals 'cd', result.type
+        assertEquals CommandType.CD, result.type
     }
 
     @Test
@@ -54,7 +54,7 @@ class ParserTestCase {
         // test
         def result = parser.parse(line)
 
-        assertEquals 'dir', result.type
+        assertEquals CommandType.DIR, result.type
     }
 
     @Test
@@ -74,7 +74,7 @@ class ParserTestCase {
         // test
         def result = parser.parse(line)
 
-        assertEquals 'file', result.type
+        assertEquals CommandType.FILE, result.type
     }
 
     @Test

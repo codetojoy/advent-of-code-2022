@@ -11,27 +11,27 @@ abstract class Command {
 
 class NoOp extends Command {
     NoOp() {
-        type = 'no-op'
+        type = CommandType.NO_OP
     }
 }
 
 class ChangeDir extends Command {
     ChangeDir(def dir) {
-        type = 'cd'
+        type = CommandType.CD
         payload = dir
     }
 }
 
 class DirListing extends Command {
     DirListing(def dir) {
-        type = 'dir'
+        type = CommandType.DIR
         payload = dir
     }
 }
 
 class FileListing extends Command {
     FileListing(def filename, def size) {
-        type = 'file'
+        type = CommandType.FILE
         payload = new Expando()
         payload.name = filename
         payload.size = size
