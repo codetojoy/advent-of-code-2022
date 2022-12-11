@@ -2,7 +2,7 @@
 package net.codetojoy
 
 class SizeFilter {
-    static def findTotal(pathMap, threshold) {
+    def findTotal(pathMap, threshold) {
         def total = pathMap.findAll { path, sizeInfo ->
                         (sizeInfo.size <= threshold)
                     }.collect { path, sizeInfo ->
@@ -11,7 +11,7 @@ class SizeFilter {
         total
     }
 
-    static def findDirForDeletion(pathMap, maxSize, targetSize) {
+    def findDirForDeletion(pathMap, maxSize, targetSize) {
         def rootSize = pathMap['/'].size
         def freeSize = maxSize - rootSize
         def targetDelta = targetSize - freeSize
