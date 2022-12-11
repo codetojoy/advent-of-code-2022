@@ -46,13 +46,14 @@ class Node {
 
     static def traverseForSize(node, pathToInfoMap) {
         def path = getPath(node)
-        def size = node.files*.size.sum()
+        def size = (node.files) ? node.files*.size.sum() : 0
         node.subDirs.each { subDir ->
             def resultForSubDir = traverseForSize(subDir, pathToInfoMap)
             size += resultForSubDir.size
         }
         def sizeInfo = new SizeInfo(path: path, size: size, isDir: node.isDir)
         pathToInfoMap[path] = sizeInfo
+        sizeInfo
     }
 
     static def traverseForSize(node) {

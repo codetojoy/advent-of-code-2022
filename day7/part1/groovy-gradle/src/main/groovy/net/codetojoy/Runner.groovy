@@ -2,6 +2,16 @@
 package net.codetojoy
 
 class Runner {
+    static void printTotal(root) {
+        def pathMap = Node.traverseForSize(root)
+        def total = pathMap.findAll { path, sizeInfo ->
+                        (sizeInfo.size <= 100_000)
+                    }.collect { path, sizeInfo ->
+                        sizeInfo.size
+                    }.sum()
+        println "TRACER total: " + total
+    }
+
     static void main(def args) {
         def inputFile = new File(args[0])
         assert inputFile.exists()
@@ -10,16 +20,12 @@ class Runner {
         def parser = new Parser()
 
         try {
-            def commands = inputLines.findResults { parser.parse(it) }
-
             def root = Node.getRoot()
-            def i = 1
-            commands.each {
-                // println "TRACER i: ${i++} c: ${it}"
-                root.apply(it)
-            }
-            println "TRACER root:"
-            println root
+
+            def commands = inputLines.findResults { parser.parse(it) }
+                                     .each { root.apply(it) }
+            printTotal(root)
+
         } catch (Error ex) {
             System.err.println "TRACER caught ex: " + ex.message
         }
