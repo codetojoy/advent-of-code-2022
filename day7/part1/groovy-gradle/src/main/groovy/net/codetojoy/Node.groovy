@@ -14,6 +14,7 @@ class Node {
     def files = new ArrayList<Node>()
     def subDirs =  new ArrayList<Node>()
     def isRoot = false
+    def isDir = true
 
     static def getRoot(def doClean = false) {
         if (doClean) {
@@ -33,22 +34,31 @@ class Node {
 
     static def getPath(node) {
         if (node.isRoot) {
-            return ""
+            return "/"
         } else {
-            return getPath(node.parent) + "/" + node.name
+            if (node.parent.isRoot) {
+                return getPath(node.parent) + node.name
+            } else {
+                return getPath(node.parent) + "/" + node.name
+            }
         }
     }
 
-    static def traverseForSize(node) {
+    static def traverseForSize(node, pathToInfoMap) {
+        def path = getPath(node)
         def size = node.files*.size.sum()
         node.subDirs.each { subDir ->
-            def resultForSubDir = traverseForSize(subDir)
+            def resultForSubDir = traverseForSize(subDir, pathToInfoMap)
             size += resultForSubDir.size
         }
-        def result = new Expando()
-        result.path = getPath(node)
-        result.size = size
-        result
+        def sizeInfo = new SizeInfo(path: path, size: size, isDir: node.isDir)
+        pathToInfoMap[path] = sizeInfo
+    }
+
+    static def traverseForSize(node) {
+        def pathToInfoMap =[:]
+        traverseForSize(node, pathToInfoMap)
+        pathToInfoMap
     }
 
     def apply(def command) {
@@ -58,7 +68,7 @@ class Node {
         } else if (command.type == CommandType.FILE) {
             def name = command.payload.name
             def size = command.payload.size
-            def node = new Node(parent: cursor, name: name, size: size)
+            def node = new Node(parent: cursor, name: name, size: size, isDir: false)
             cursor.files << node
         } else if (command.type == CommandType.CD) {
             def name = command.payload

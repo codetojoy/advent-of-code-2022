@@ -116,21 +116,56 @@ class NodeIntegrationTestCase {
     }
 
     @Test
-    void testTraverseForSize_root_d() {
-        // ls /d
+    void testGetPath_root() {
+        root.apply(parser.parse('$ cd /'))
+        cursor = root.apply(parser.parse('$ ls'))
+
+        // test
+        def path = Node.getPath(cursor)
+
+        assertEquals '/', path
+    }
+
+    @Test
+    void testGetPath_root_a() {
+        root.apply(parser.parse('$ cd /'))
+        root.apply(parser.parse('$ cd a'))
+        cursor = root.apply(parser.parse('$ ls'))
+
+        // test
+        def path = Node.getPath(cursor)
+
+        assertEquals '/a', path
+    }
+
+    @Test
+    void testGetPath_root_a_e() {
         root.apply(parser.parse('$ cd /'))
         root.apply(parser.parse('$ cd a'))
         root.apply(parser.parse('$ cd e'))
-        root.apply(parser.parse('$ cd ..'))
-        root.apply(parser.parse('$ cd ..'))
+        cursor = root.apply(parser.parse('$ ls'))
+
+        // test
+        def path = Node.getPath(cursor)
+
+        assertEquals '/a/e', path
+    }
+
+    @Test
+    void testTraverseForSize_root_d() {
+        // ls /d
+        root.apply(parser.parse('$ cd /'))
         root.apply(parser.parse('$ cd d'))
         cursor = root.apply(parser.parse('$ ls'))
 
         // test
-        def result = Node.traverseForSize(cursor)
+        def map = Node.traverseForSize(cursor)
 
-        assertEquals '/d', result.path
-        assertEquals 24933642, result.size
+        def path = '/d'
+        assertTrue map.keySet().contains(path)
+        assertEquals path, map[path].path
+        assertEquals 24933642, map[path].size
+        assertTrue map[path].isDir
         /*
         root.apply(parser.parse('4060174 j'))
         root.apply(parser.parse('8033020 d.log'))
@@ -147,9 +182,28 @@ class NodeIntegrationTestCase {
         cursor = root.apply(parser.parse('$ ls'))
 
         // test
-        def result = Node.traverseForSize(cursor)
+        def map = Node.traverseForSize(cursor)
 
-        assertEquals '/a', result.path
-        assertEquals 94853, result.size
+        def path = '/a'
+        assertTrue map.keySet().contains(path)
+        assertEquals path, map[path].path
+        assertEquals 94853, map[path].size
+        assertTrue map[path].isDir
+    }
+
+    @Test
+    void testTraverseForSize_root_paths() {
+        // ls /
+        root.apply(parser.parse('$ cd /'))
+        cursor = root.apply(parser.parse('$ ls'))
+
+        // test
+        def map = Node.traverseForSize(cursor)
+
+        assertEquals 4, map.keySet().size()
+        assertTrue map.keySet().contains('/')
+        assertTrue map.keySet().contains('/a')
+        assertTrue map.keySet().contains('/a/e')
+        assertTrue map.keySet().contains('/d')
     }
 }
