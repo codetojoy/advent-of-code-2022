@@ -18,7 +18,7 @@ class SizeFilter {
         def candidateDirs = pathMap.findAll { path, sizeInfo ->
                         (sizeInfo.size >= targetDelta)
                     }
-        def candidateDir = candidateDirs.min { it.value.sizeInfo.size }
-        candidateDir
+        def candidateDir = candidateDirs.min { it.value.size }
+        candidateDir.value.path
     }
 }

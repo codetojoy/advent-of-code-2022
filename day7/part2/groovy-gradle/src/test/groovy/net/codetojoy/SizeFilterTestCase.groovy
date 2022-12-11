@@ -21,4 +21,20 @@ class SizeFilterTestCase {
 
         assertEquals 300, result
     }
+
+    @Test
+    void testFindDirForDeletion_basic() {
+        def maxSize = 10_000
+        def targetSize = 5_000
+        def pathMap = [:]
+        pathMap['/'] = new SizeInfo(path: '/', size: 6000)
+        pathMap['/a'] = new SizeInfo(path: '/a', size: 1000)
+        pathMap['/b'] = new SizeInfo(path: '/b', size: 2000)
+        pathMap['/c'] = new SizeInfo(path: '/c', size: 3000)
+
+        // test
+        def result = sizeFilter.findDirForDeletion(pathMap, maxSize, targetSize)
+
+        assertEquals '/a', result
+    }
 }
