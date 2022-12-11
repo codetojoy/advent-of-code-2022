@@ -35,6 +35,6 @@ class SizeFilterTestCase {
         // test
         def result = sizeFilter.findDirForDeletion(pathMap, maxSize, targetSize)
 
-        assertEquals '/a', result
+        assertEquals 1000, result.size
     }
 }

@@ -19,6 +19,6 @@ class SizeFilter {
                         (sizeInfo.size >= targetDelta)
                     }
         def candidateDir = candidateDirs.min { it.value.size }
-        candidateDir.value.path
+        candidateDir.value
     }
 }
