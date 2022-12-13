@@ -1,0 +1,27 @@
+
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+application {
+    mainClass = 'net.codetojoy.Runner'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy:4.0.6'
+    testImplementation 'junit:junit:4.13.2'
+}
+
+run {
+    args "${projectDir}/input.txt"
+}
+
+test {
+    testLogging {
+        events "passed", "failed"
+    }
+}
+
