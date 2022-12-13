@@ -39,33 +39,38 @@ class Points {
     static List<Point> getPoints(Point point, Direction direction, int n) {
         var points = new ArrayList<Point>();
 
-        if (direction == Direction.RIGHT) {
-            int i = point.row();
-            int j = point.col() + 1;
-            while (j < n) {
-                points.add(new Point(i, j, isEdge(n, i, j)));
-                j++;
+        switch (direction) {
+            case RIGHT -> {
+                int i = point.row();
+                int j = point.col() + 1;
+                while (j < n) {
+                    points.add(new Point(i, j, isEdge(n, i, j)));
+                    j++;
+                }
             }
-        } else if (direction == Direction.LEFT) {
-            int i = point.row();
-            int j = point.col() - 1;
-            while (j >= 0) {
-                points.add(new Point(i, j, isEdge(n, i, j)));
-                j--;
+            case LEFT -> {
+                int i = point.row();
+                int j = point.col() - 1;
+                while (j >= 0) {
+                    points.add(new Point(i, j, isEdge(n, i, j)));
+                    j--;
+                }
             }
-        } else if (direction == Direction.UP) {
-            int i = point.row() - 1;
-            int j = point.col();
-            while (i >= 0) {
-                points.add(new Point(i, j, isEdge(n, i, j)));
-                i--;
+            case UP -> {
+                int i = point.row() - 1;
+                int j = point.col();
+                while (i >= 0) {
+                    points.add(new Point(i, j, isEdge(n, i, j)));
+                    i--;
+                }
             }
-        } else if (direction == Direction.DOWN) {
-            int i = point.row() + 1;
-            int j = point.col();
-            while (i < n) {
-                points.add(new Point(i, j, isEdge(n, i, j)));
-                i++;
+            case DOWN -> {
+                int i = point.row() + 1;
+                int j = point.col();
+                while (i < n) {
+                    points.add(new Point(i, j, isEdge(n, i, j)));
+                    i++;
+                }
             }
         }
 
