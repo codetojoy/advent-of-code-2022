@@ -2,6 +2,7 @@
 package net.codetojoy;
 
 import java.util.*;
+import java.util.stream.*;
 
 class Points {
     static void assertInRange(int n, int val) {
@@ -26,12 +27,12 @@ class Points {
     static List<Point> getAllPoints(int n) {
         var points = new ArrayList<Point>();
 
-        for (int row = 0; row < n; row++) {
-            for (int col = 0; col < n; col++) {
+        IntStream.range(0, n).forEach((row) -> {
+            IntStream.range(0, n).forEach((col) -> {
                 assertSafe(n, row, col);
                 points.add(new Point(row, col, isEdge(n, row, col)));
-            }
-        }
+            });
+        });
 
         return points;
     }
