@@ -55,6 +55,10 @@ jobs:
         run: ./gradlew test
         working-directory: ./day7/part2/groovy-gradle
 
-      - name: test d8-p1-gradle
+      - name: test d8-p1-groovy-gradle
         run: ./gradlew test
         working-directory: ./day8/part1/groovy-gradle
+
+      - name: test d8-p1-java
+        run: ./gradlew test
+        working-directory: ./day8/part1/java
