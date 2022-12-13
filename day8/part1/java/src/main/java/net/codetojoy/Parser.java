@@ -12,10 +12,9 @@ class Parser {
 
         for (var line : lines) {
             var intLine = new ArrayList<Integer>();
-            var chars = line.toCharArray();
 
-            for (var c : chars) {
-                intLine.add(Integer.parseInt("" + c));
+            for (var ch : line.toCharArray()) {
+                intLine.add(Integer.parseInt("" + ch));
             }
 
             grid.setRow(row, intLine);
