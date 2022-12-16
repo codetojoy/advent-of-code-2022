@@ -19,6 +19,11 @@ class Location {
         moveListener.track(point)
     }
 
+    def moveBy(deltaX, deltaY) {
+        point = new Point(point.x + deltaX, point.y + deltaY)
+        moveListener.track(point)
+    }
+
     def moveLeft(value) {
         value.times {
             move(point.x - 1, point.y)

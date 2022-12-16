@@ -30,19 +30,19 @@ class Tail implements MoveListener {
         } else if ((deltaX == 1 && deltaY == 2) || (deltaX == 2 && deltaY == 1)) {
             // 1 right, 2 up
             // 2 right, 1 up
-            location.move(location.point.x + 1, location.point.y + 1)
+            location.moveBy(1, 1)
         } else if ((deltaX == 1 && deltaY == -2) || (deltaX == 2 && deltaY == -1)) {
             // 1 right, 2 down
             // 2 right, 1 down
-            location.move(location.point.x + 1, location.point.y - 1)
+            location.moveBy(1, -1)
         } else if ((deltaX == -1 && deltaY == 2) || (deltaX == -2 && deltaY == 1)) {
             // 1 left, 2 up
             // 2 left, 1 up
-            location.move(location.point.x - 1, location.point.y + 1)
+            location.moveBy(-1, 1)
         } else if ((deltaX == -1 && deltaY == -2) || (deltaX == -2 && deltaY == -1)) {
             // 1 left, 2 down
             // 2 left, 1 down
-            location.move(location.point.x - 1, location.point.y - 1)
+            location.moveBy(-1, -1)
         } else {
             // no-op
         }
