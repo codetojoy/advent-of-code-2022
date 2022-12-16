@@ -2,45 +2,14 @@
 package net.codetojoy
 
 class Head {
-    def location = new Point(0, 0)
-    def moveListener
+    def location 
 
     def Head(moveListener) {
-        this.moveListener = moveListener
-        this.moveListener.track(location)
+        this.location = new Location(moveListener)
     }
 
     String toString() {
         "location: ${location}"
-    }
-
-    def move(x, y) {
-        location = new Point(x, y)
-        moveListener.track(location)
-    }
-
-    def moveLeft(value) {
-        value.times {
-            move(location.x - 1, location.y)
-        }
-    }
-
-    def moveRight(value) {
-        value.times {
-            move(location.x + 1, location.y)
-        }
-    }
-
-    def moveUp(value) {
-        value.times {
-            move(location.x, location.y + 1)
-        }
-    }
-
-    def moveDown(value) {
-        value.times {
-            move(location.x, location.y - 1)
-        }
     }
 
     def apply(direction) {
@@ -49,16 +18,16 @@ class Head {
 
         switch (type) {
             case DirectionType.LEFT:
-                moveLeft(value)
+                location.moveLeft(value)
                 break
             case DirectionType.RIGHT:
-                moveRight(value)
+                location.moveRight(value)
                 break
             case DirectionType.UP:
-                moveUp(value)
+                location.moveUp(value)
                 break
             case DirectionType.DOWN:
-                moveDown(value)
+                location.moveDown(value)
                 break
         }
     }

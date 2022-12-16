@@ -7,8 +7,6 @@ class Runner {
     def run(def inputLines) {
         def directions = new Parser().parse(inputLines)
         world.apply(directions)
-        println "TRACER world: " + world.toString()
-        println "TRACER num tail positions: " + world.getNumTailPositions()
         world.getNumTailPositions()
     }
 
@@ -17,7 +15,8 @@ class Runner {
         assert inputFile.exists()
 
         def inputLines = (inputFile as List).collect { it }
-        new Runner().run(inputLines)
+        def numTailPositions = new Runner().run(inputLines)
+        println "TRACER num tail positions: " + numTailPositions
 
         println "Ready."
     }

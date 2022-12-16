@@ -21,8 +21,8 @@ class TailTestCase {
         // test
         tail.track(p(-1,0))
 
-        assert 0 == tail.location.x
-        assert 0 == tail.location.y
+        assert 0 == tail.location.point.x
+        assert 0 == tail.location.point.y
         assert 1 == tail.getNumMoves()
     }
 
@@ -31,8 +31,8 @@ class TailTestCase {
         // test
         tail.track(p(1,0))
 
-        assert 0 == tail.location.x
-        assert 0 == tail.location.y
+        assert 0 == tail.location.point.x
+        assert 0 == tail.location.point.y
         assert 1 == tail.getNumMoves()
     }
 
@@ -41,8 +41,8 @@ class TailTestCase {
         // test
         tail.track(p(0,1))
 
-        assert 0 == tail.location.x
-        assert 0 == tail.location.y
+        assert 0 == tail.location.point.x
+        assert 0 == tail.location.point.y
         assert 1 == tail.getNumMoves()
     }
 
@@ -51,8 +51,8 @@ class TailTestCase {
         // test
         tail.track(p(0,-1))
 
-        assert 0 == tail.location.x
-        assert 0 == tail.location.y
+        assert 0 == tail.location.point.x
+        assert 0 == tail.location.point.y
         assert 1 == tail.getNumMoves()
     }
 
@@ -62,8 +62,8 @@ class TailTestCase {
         tail.track(p(-1,0))
         tail.track(p(-2,0))
 
-        assert -1 == tail.location.x
-        assert 0 == tail.location.y
+        assert -1 == tail.location.point.x
+        assert 0 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -73,8 +73,8 @@ class TailTestCase {
         tail.track(p(1,0))
         tail.track(p(2,0))
 
-        assert 1 == tail.location.x
-        assert 0 == tail.location.y
+        assert 1 == tail.location.point.x
+        assert 0 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -84,8 +84,8 @@ class TailTestCase {
         tail.track(p(0,1))
         tail.track(p(0,2))
 
-        assert 0 == tail.location.x
-        assert 1 == tail.location.y
+        assert 0 == tail.location.point.x
+        assert 1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -95,8 +95,8 @@ class TailTestCase {
         tail.track(p(0,-1))
         tail.track(p(0,-2))
 
-        assert 0 == tail.location.x
-        assert -1 == tail.location.y
+        assert 0 == tail.location.point.x
+        assert -1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -111,8 +111,8 @@ class TailTestCase {
         tail.track(p(1,1))
         tail.track(p(1,2))
 
-        assert 1 == tail.location.x
-        assert 1 == tail.location.y
+        assert 1 == tail.location.point.x
+        assert 1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -127,8 +127,8 @@ class TailTestCase {
         tail.track(p(1,1))
         tail.track(p(2,1))
 
-        assert 1 == tail.location.x
-        assert 1 == tail.location.y
+        assert 1 == tail.location.point.x
+        assert 1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -143,8 +143,8 @@ class TailTestCase {
         tail.track(p(1,-1))
         tail.track(p(1,-2))
 
-        assert 1 == tail.location.x
-        assert -1 == tail.location.y
+        assert 1 == tail.location.point.x
+        assert -1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -159,8 +159,8 @@ class TailTestCase {
         tail.track(p(1,-1))
         tail.track(p(2,-1))
 
-        assert 1 == tail.location.x
-        assert -1 == tail.location.y
+        assert 1 == tail.location.point.x
+        assert -1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -175,8 +175,8 @@ class TailTestCase {
         tail.track(p(-1,1))
         tail.track(p(-1,2))
 
-        assert -1 == tail.location.x
-        assert 1 == tail.location.y
+        assert -1 == tail.location.point.x
+        assert 1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -191,8 +191,8 @@ class TailTestCase {
         tail.track(p(-1,1))
         tail.track(p(-2,1))
 
-        assert -1 == tail.location.x
-        assert 1 == tail.location.y
+        assert -1 == tail.location.point.x
+        assert 1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -207,8 +207,8 @@ class TailTestCase {
         tail.track(p(-1,-1))
         tail.track(p(-1,-2))
 
-        assert -1 == tail.location.x
-        assert -1 == tail.location.y
+        assert -1 == tail.location.point.x
+        assert -1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 
@@ -223,8 +223,8 @@ class TailTestCase {
         tail.track(p(-1,-1))
         tail.track(p(-2,-1))
 
-        assert -1 == tail.location.x
-        assert -1 == tail.location.y
+        assert -1 == tail.location.point.x
+        assert -1 == tail.location.point.y
         assert 2 == tail.getNumMoves()
     }
 }

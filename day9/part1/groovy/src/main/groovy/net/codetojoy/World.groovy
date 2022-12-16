@@ -6,7 +6,6 @@ class World {
     def head = new Head(tail)
 
     def apply(Direction direction) {
-        println "TRACER World d: " + direction
         head.apply(direction)
     }
 
@@ -15,7 +14,7 @@ class World {
     }
 
     def getNumTailPositions() {
-        tail.moveListener.getNumMoves()
+        tail.location.moveListener.getNumMoves()
     }
 
     String toString() {
