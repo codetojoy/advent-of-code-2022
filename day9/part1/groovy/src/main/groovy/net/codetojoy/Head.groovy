@@ -2,7 +2,7 @@
 package net.codetojoy
 
 class Head {
-    def location 
+    def location
 
     def Head(moveListener) {
         this.location = new Location(moveListener)

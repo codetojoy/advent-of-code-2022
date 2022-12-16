@@ -7,7 +7,7 @@ import org.junit.*
 class RunnerTestCase {
     def runner = new Runner()
 
-    // @Test
+    @Test
     void testRun_integration() {
         def lines = []
         lines << 'R 4'
