@@ -66,11 +66,14 @@ class Knot implements MoveListener {
             }
             isMove = true
         } else if (isQuadrant3) {
-            assert deltaX != deltaY
+            // assert deltaX != deltaY
             if (absDeltaX > absDeltaY) {
                 // 3b
                 newX = point.x + 1
                 newY = point.y
+            } else if (deltaX == deltaY) {
+                newX = point.x + 1
+                newY = point.y + 1
             } else {
                 // 3a
                 newX = point.x
@@ -102,14 +105,17 @@ class Knot implements MoveListener {
         assert deltaX == 0 || deltaY == 0
         def isMove = true
 
-        if (deltaX == -2 && deltaY == 0) {
-            location.moveLeft(1)
-        } else if (deltaX == 2 && deltaY == 0) {
-            location.moveRight(1)
-        } else if (deltaX == 0 && deltaY == 2) {
-            location.moveUp(1)
-        } else if (deltaX == 0 && deltaY == -2) {
-            location.moveDown(1)
+        def absDeltaX = Math.abs(deltaX)
+        def absDeltaY = Math.abs(deltaY)
+
+        if (deltaX < 0 && deltaY == 0) {
+            location.moveLeft(absDeltaX - 1)
+        } else if (deltaX > 0 && deltaY == 0) {
+            location.moveRight(absDeltaX - 1)
+        } else if (deltaX == 0 && deltaY > 0) {
+            location.moveUp(absDeltaY - 1)
+        } else if (deltaX == 0 && deltaY < 0) {
+            location.moveDown(absDeltaY - 1)
         } else {
             isMove = false
         }
