@@ -169,4 +169,35 @@ class RunnerTestCase {
 
         assert 8 == runner.world.getNumTailPositions()
     }
+
+    @Test
+    void testRun_integration_case6() {
+        def lines = []
+        lines << 'R 5'
+        lines << 'U 8'
+        lines << 'L 8'
+        lines << 'D 3'
+        lines << 'R 17'
+        lines << 'D 10'
+        /*
+        lines << 'L 25'
+        lines << 'U 20'
+        */
+
+        // test
+        def result = runner.run(lines)
+
+        assertPoint "head",  14, -5
+        assertPoint "knot1", 14, -4
+        assertPoint "knot2", 14, -3
+        assertPoint "knot3", 14, -2
+        assertPoint "knot4", 14, -1
+        assertPoint "knot5", 14,  0
+        assertPoint "knot6", 13, 0
+        assertPoint "knot7", 12, 0
+        assertPoint "knot8", 11, 0
+        assertPoint "tail",  10, 0
+
+        assert 13 == runner.world.getNumTailPositions()
+    }
 }
