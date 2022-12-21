@@ -36,8 +36,6 @@ class RunnerTestCase {
         // test
         def result = runner.run(lines)
 
-        // runner.world.logKnots("case1")
-
         assertPoint "head", 5, 0
         assertPoint "knot1", 4, 0
         assertPoint "knot2", 3, 0
@@ -64,8 +62,6 @@ class RunnerTestCase {
 
         // test
         def result = runner.run(lines)
-
-        runner.world.logKnots("case2")
 
         assertPoint "head", 5, 8
         assertPoint "knot1", 5, 7
@@ -98,8 +94,6 @@ class RunnerTestCase {
         // test
         def result = runner.run(lines)
 
-        runner.world.logKnots("case3")
-
         assertPoint "head",  -3, 8
         assertPoint "knot1", -2, 8
         assertPoint "knot2", -1, 8
@@ -131,8 +125,6 @@ class RunnerTestCase {
         // test
         def result = runner.run(lines)
 
-        runner.world.logKnots("case4")
-
         assertPoint "head",  -3, 5
         assertPoint "knot1", -3, 6
         assertPoint "knot2", -2, 7
@@ -145,5 +137,36 @@ class RunnerTestCase {
         assertPoint "tail", 1, 3
 
         assert 4 == runner.world.getNumTailPositions()
+    }
+
+    @Test
+    void testRun_integration_case5() {
+        def lines = []
+        lines << 'R 5'
+        lines << 'U 8'
+        lines << 'L 8'
+        lines << 'D 3'
+        lines << 'R 17'
+        /*
+        lines << 'D 10'
+        lines << 'L 25'
+        lines << 'U 20'
+        */
+
+        // test
+        def result = runner.run(lines)
+
+        assertPoint "head",  14, 5
+        assertPoint "knot1", 13, 5
+        assertPoint "knot2", 12, 5
+        assertPoint "knot3", 11, 5
+        assertPoint "knot4", 10, 5
+        assertPoint "knot5",  9, 5
+        assertPoint "knot6",  8, 5
+        assertPoint "knot7",  7, 5
+        assertPoint "knot8",  6, 5
+        assertPoint "tail",   5, 5
+
+        assert 8 == runner.world.getNumTailPositions()
     }
 }
