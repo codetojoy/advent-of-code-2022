@@ -38,8 +38,6 @@ class Knot implements MoveListener {
         def absDeltaX = Math.abs(deltaX)
         def absDeltaY = Math.abs(deltaY)
 
-        log("knot6 ${isQuadrant1} ${isQuadrant2} ${isQuadrant3} ${isQuadrant4} ${deltaX} ${deltaY}")
-
         def newX = -1
         def newY = -1
 
@@ -54,7 +52,6 @@ class Knot implements MoveListener {
                 newX = point.x
                 newY = point.y - 1
             }
-            log("knot6 ${newX} ${newY}")
             isMove = true
         } else if (isQuadrant2) {
             assert deltaX != deltaY
@@ -134,9 +131,7 @@ class Knot implements MoveListener {
 
     @Override
     void track(Point point) {
-        log("knot6 hello")
         if (areTouching(point)) {
-            log("knot6 are touching")
             return
         }
 
@@ -146,10 +141,8 @@ class Knot implements MoveListener {
         def isPlanar = (deltaX == 0 || deltaY == 0)
 
         if (isPlanar) {
-            log("knot6 planar")
             isMove = handlePlanar(point, deltaX, deltaY)
         } else {
-            log("knot6 non-planar")
             isMove = handleNonPlanar(point, deltaX, deltaY)
         }
 
