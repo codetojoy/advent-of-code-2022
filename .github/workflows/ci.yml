@@ -74,3 +74,7 @@ jobs:
       - name: test d9-p2-groovy
         run: ./gradlew test
         working-directory: ./day9/part2/groovy
+
+      - name: test d10-p1-groovy
+        run: ./gradlew test
+        working-directory: ./day_10/part1/groovy
